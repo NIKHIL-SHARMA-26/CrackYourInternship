@@ -1,0 +1,24 @@
+https://leetcode.com/problems/spiral-matrix/description/
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<vector<int>> dir{{0,1},{1,0},{0,-1},{-1,0}};
+         vector<int> ans;
+         int sr = matrix.size();
+         if(!sr) return ans;
+         int sc = matrix[0].size();
+         vector<int>step{sc,sr-1};   // sr-1 as we are at row = 1 
+         int d = 0;
+         int ir=0,ic=-1;         //ic=-1 as we add want ic=0 
+          while(step[d%2]){        // check row or col any left
+              for(int i=0;i<step[d%2];i++){
+               ir += dir[d][0];
+               ic += dir[d][1];
+               ans.push_back(matrix[ir][ic]);
+              }
+              step[d%2]--;      // subtract row or col size
+              d = (d+1)%4;     // cycle in four direction
+          }
+          return ans;
+    }
+};
