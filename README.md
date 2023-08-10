@@ -1,2 +1,2 @@
 # DSA
-It contain the Dsa Sheet Problems of Arsh Goyal.
+Arsh Goyal Dsa Sheet.
