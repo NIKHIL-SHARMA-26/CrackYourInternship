@@ -1,0 +1,20 @@
+https://leetcode.com/problems/rotate-image/
+
+// anticlockwise cycle swap
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {  
+        int n=matrix.size();
+        int m=matrix[0].size();
+           int tn=n;
+           int tm=m;
+          for(int i=0;i<n/2;i++){
+              for(int j=i;j<m-i-1;j++){
+                  swap(matrix[i][j],matrix[tn-1-j][i]);
+                  swap(matrix[tn-1-j][i],matrix[tn-1-i][tm-1-j]);
+                  swap(matrix[tn-1-i][tm-1-j],matrix[j][tm-1-i]);
+              }
+          }
+
+    }
+};
