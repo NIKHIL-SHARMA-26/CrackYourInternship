@@ -1,0 +1,21 @@
+
+https://leetcode.com/problems/ones-and-zeroes/description/
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+
+          vector<vector<int>>dp(m+1,vector<int>(n+1));
+
+          for(auto s:strs){
+              int currzero = count(s.begin(),s.end(),'0');
+              int currone = s.size()-currzero;
+
+                  for(int i=m;i>=currzero;i--){
+                      for(int j=n;j>=currone;j--){
+                         dp[i][j] = max(dp[i][j], 1+dp[i-currzero][j-currone]);
+                      }
+                  }
+          }    
+        return dp[m][n];
+    }
+};

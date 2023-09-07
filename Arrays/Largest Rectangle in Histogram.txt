@@ -1,0 +1,23 @@
+https://leetcode.com/problems/largest-rectangle-in-histogram/description/
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int>s;
+        heights.push_back(0);   // so that we can handle equal at one time,not again in every loop
+        int n = heights.size();
+         int i=0;
+         int ans=0;
+         while(i<n){
+             while(!s.empty() && heights[s.top()]>heights[i]){
+                  int h = heights[s.top()];
+                  s.pop();
+                  int left = s.empty()?-1:s.top();
+                  ans = max(ans, h*(i-(left+1)));  // left is smallest so we not include
+             }
+             s.push(i);
+             i++;
+         }
+        return ans;
+    }
+};

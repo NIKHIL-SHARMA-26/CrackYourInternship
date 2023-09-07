@@ -1,0 +1,33 @@
+https://leetcode.com/problems/text-justification/description/
+
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string>curr;
+        vector<string>ans;
+        
+        int len=0;
+         for(auto w:words){
+             if( w.size() + len + curr.size() > maxWidth ){
+                for(int i=0; i<maxWidth - len; i++){
+                    curr[i%(curr.size()-1?curr.size()-1:1)]+=' ';
+                }
+                string s="";
+                for(auto c:curr)s+=c;
+                ans.push_back(s);
+                  curr.clear();
+                  len=0;
+             }
+             curr.push_back(w);
+             len+=w.size();
+         }
+         string last="";
+          for(auto w:curr){
+              last+=w;
+              last+=' ';
+          }
+          while(last.size()<maxWidth)last+=' ';
+          ans.push_back(last.substr(0,maxWidth));
+          return ans;
+    }
+};
