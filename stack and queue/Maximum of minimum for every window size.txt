@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/maximum-of-minimum-for-every-window-size3453/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+ vector <int> maxOfMin(int arr[], int n)
+    {
+        // Your code here
+         vector<int>win(n+1);
+         stack<int>st;
+         vector<int>a(arr,arr+n); 
+        a.push_back(0);    // just to handle last element left in stack so we not need to handle this after the loop
+         for(int i=0;i<=n;i++){
+             while(!st.empty() && a[st.top()]>a[i]){
+                 int left=-1, right=i;
+                 int val = a[st.top()];
+                 st.pop();
+                 if(!st.empty())left = st.top();
+                 win[right-left-1] = max(win[right-left-1],val);
+             }
+             st.push(i);
+         }
+         for(int i=n-1;i>=1;i--)win[i] = max(win[i],win[i+1]);
+         vector<int>ans;
+         for(auto i:win)if(i!=0)ans.push_back(i);
+         return ans;
+    }

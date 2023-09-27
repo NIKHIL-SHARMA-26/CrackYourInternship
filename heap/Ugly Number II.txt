@@ -1,0 +1,17 @@
+https://leetcode.com/problems/ugly-number-ii/
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+           
+           vector<int>ans(n);
+            int a=0,b=0,c=0;
+            ans[0]=1;
+           for(int i=1;i<n;i++){
+                ans[i]  = min({ans[a]*2,ans[b]*3,ans[c]*5});
+                 if(ans[i] == ans[a]*2) a++;
+                 if(ans[i] == ans[b]*3) b++;
+                  if(ans[i] == ans[c]*5) c++;
+           }
+           return ans[n-1];
+    }
+};
