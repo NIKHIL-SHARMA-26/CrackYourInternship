@@ -1,0 +1,65 @@
+https://leetcode.com/problems/decode-string/
+class Solution {
+public:
+   int idx;
+   int n;
+   string decodeInt(string s){
+        string ans = "";
+        string num="";
+        while(s[idx]>='0' && s[idx]<='9'){
+             num += s[idx++];
+        }
+        int k = stoi(num);
+        string curr = decode(s);
+
+        while(k--)ans+=curr;
+        return ans;
+   }
+   string decode(string s){
+        string ans="";
+          while(idx<n && s[idx]!=']'){
+              if(s[idx]>='a' && s[idx]<='z'){
+                  ans += s[idx];
+              }
+              if(s[idx]>='0' && s[idx]<='9'){
+                  ans += decodeInt(s);
+              }
+              idx++;
+          }
+          return ans;
+   }
+    string decodeString(string s) {
+        idx=0;
+        n=s.size();
+         return decode(s);
+    }
+};
+//--------------------------------
+class Solution {
+public:
+   int idx,n;
+   string decode(string s){
+        string ans="";
+          while(idx<n && s[idx]!=']'){
+              if(s[idx]>='a' && s[idx]<='z'){
+                  ans += s[idx];
+              }
+              if(s[idx]>='0' && s[idx]<='9'){
+                    string num="";
+                 while(s[idx]>='0' && s[idx]<='9'){
+                      num += s[idx++];
+                 }
+                  int k = stoi(num);
+                  string curr = decode(s);
+                  while(k--)ans += curr;
+              }
+              idx++;
+          }
+          return ans;
+   }
+    string decodeString(string s) {
+        idx=0;
+        n=s.size();
+         return decode(s);
+    }
+};
